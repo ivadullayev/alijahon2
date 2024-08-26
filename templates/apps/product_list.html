@@ -1,33 +1,43 @@
+
+
+
 {% extends 'apps/include_base/base.html' %}
 {% load static %}
+{% load custom_tags %}
 
 {% block body %}
     <div class="card mb-3">
-        <div class="mobileShow" style="margin-left: 22px; margin-top: 10px;">
-        </div>
-        <div class="card-body">
-    
-                  <div class="container border-bottom-4">
-            <div class="header_tab_menu ">
-                <div class="header_menu active" style="overflow: auto">
+    <div class="mobileShow" style="margin-left: 22px; margin-top: 10px;">
+    </div>
+    <div class="card-body">
+    <div class="container border-bottom-4">
+        <div class="header_tab_menu ">
+            <div class="header_menu active" style="overflow: auto">
+
                     
-                    {% for category in categories %}
-                    	                    <a href="{% url 'product-list' category.slug %}" class="btn btn-default active">
+                    <a href="{% url 'product-list' %}" aria-expanded="true"
+                       class="btn btn-default {% if not selected_category %}active{% endif %}" id="toggle-button">
+                        Barchasi
+                    </a>
+            
+            
+
+                {% for category in categories %}
+                    <a href="{% url 'product-list' %}?category={{ category.slug }}"
+                       class="btn btn-default {% if selected_category == category.slug %}active}{% endif %}">
                         {{ category.name }}
 
-                        </a> 
+                    </a>
 
-                    {% endfor %}
-                    
-                    
-                </div>
+                {% endfor %}
+
+
             </div>
         </div>
-        <div class="container" id="productsList">
-            <div class="content_grid">
-                <div class="row">
-            
-            
+    </div>
+    <div class="container" id="productsList">
+        <div class="content_grid">
+            <div class="row">
                 {% for product in products %}
                     <div class="col-6 mb-3 col-md-6 col-lg-4">
                         <div class="border rounded-1 d-flex flex-column justify-content-between pb-3">
@@ -46,13 +56,16 @@
                                     </h5>
                                     <p class="fs--1 mb-2">
                                         <a class="text-500"
-                                           href="{% url 'product-list' product.category.slug %}">{{ product.category.name }}</a>
+                                           href="{% url 'product-list' %}?category={{ product.category.slug }}</a>
+{#                                           href="{% url 'product-list' %}?category={{ product.category.slug }}">#}
+
                                     </p>
                                     <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-2"> {{ product.price }}
                                         <!-- <del class="ms-2 fs--1 text-500">180 000 so'm </del> -->
                                     </h5>
                                 </div>
                             </div>
+
 
                             <div class="d-flex flex-between-center px-3">
 
@@ -148,4 +161,9 @@
 
 
 {% endblock %}
+
+
+
+
+
 

@@ -1,0 +1,26 @@
+{% extends 'apps/include_base/base.html' %}
+{% load static %}
+{% block body %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <div class="container">
+                <div class="d-flex justify-content-center">
+                    <canvas class="w-50 h-50 m-0" id="order-chart"
+                            style="display: block; box-sizing: border-box; height: 415px; width: 415px;" width="541"
+                            height="541"></canvas>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <canvas class="w-50 h-50 m-0" id="regions-chart"
+                            style="display: block; box-sizing: border-box; height: 415px; width: 415px;" width="541"
+                            height="541"></canvas>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <canvas class="w-50 h-50 m-0" id="products-chart"
+                            style="display: block; box-sizing: border-box; height: 415px; width: 415px;" width="541"
+                            height="541"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

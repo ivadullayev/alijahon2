@@ -5,13 +5,28 @@
         <div class="card-body">
             <div class="col-lg-8 swiper-container">
 
-                <form method="post">
-                    <input type="hidden" name="csrfmiddlewaretoken"
-                           value="YAOwwBG94smVbDRaIfdXmurHe5z53DrdUpWfoCDgYLB9TFQosEyDiFjncPSD6th7">
-                    <div class="mb-2">
+{#                <form method="post">#}
+{#                    <input type="hidden" name="csrfmiddlewaretoken"#}
+{#                           value="YAOwwBG94smVbDRaIfdXmurHe5z53DrdUpWfoCDgYLB9TFQosEyDiFjncPSD6th7">#}
+{#                    <div class="mb-2">#}
+{#                        <label class="form-label" for="formGroupNameInput">Ism:</label>#}
+{#                        <input class="form-control" name="full_name" id="formGroupNameInput" type="text"/>#}
+{#                    </div>#}
+{##}
+                
+                         <form method="post" action="{% url 'create_order' product.id %}">
+                        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                        <div class="mb-2">
+                              {% if messages_error %}
+                                {% for error_message in messages_error %}
+                                <p class="error-message">{{ error_message }}</p>
+                            {% endfor %}
+                        {% endif %}
                         <label class="form-label" for="formGroupNameInput">Ism:</label>
                         <input class="form-control" name="full_name" id="formGroupNameInput" type="text"/>
                     </div>
+                
+                    
                     <!-- <div class="mb-2">
                                             <label class="form-label" for="formGroupEmailInput">Telefon nomer:</label>
                                             <input class="form-control" id="formGroupEmailInput" type="email" />
@@ -36,10 +51,10 @@
                                                 <option value="xorazm">Xorazm viloyati</option>
                                             </select>
                                         </div> -->
-                    <div class="mb-4">
-                        <label class="form-label" for="formGroupEmailInput">Telefon nomer:</label>
-                        <input class="form-control" id="phone-mask" required name="phone_number" type="text"/>
-                    </div>
+                        <div class="mb-4">
+                            <label class="form-label" for="formGroupEmailInput">Telefon nomer:</label>
+                            <input class="form-control" id="phone-mask" required name="phone_number" type="text"/>
+                        </div>
                     <!-- <div class="mb-4">
                                             <label class="form-label">Soni:</label>
                                             <select name="quantity" class="form-select" aria-label="Default select example">
@@ -57,7 +72,8 @@
                                             </select>
                                         </div> -->
                     <span style="padding-bottom: 100px;">
-
+                
+                        
 
 
                 </span>
@@ -83,7 +99,7 @@
                     {{ product.name }}
                 </h5>
                 <p class="fs--1">
-                <p>{{ product.description }}</p>
+                <p>{{ product.description|safe }}</p>
 
                 <table class="table">
                     {% for s in product.specifications.all %}
@@ -117,6 +133,25 @@
             </div>
         </div>
     </div>
+    
+      <style>
+        .error-message {
+            color: red;
+        }
+    </style>
+    
+    
 
+
+   <script src="https://unpkg.com/imask"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+
+    <script>
+        $('#phone-mask').inputmask({
+            "mask": "+\\9\\98(99) 999-99-99"
+        });
+        $('#messages-modal').modal('show');
+    </script>
 {% endblock %}
 

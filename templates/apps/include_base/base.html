@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_tags %}
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 
@@ -13,7 +14,7 @@
     <title>
 
         Internet do'kon O'zbekiston bo'ylab bepul yetqazib berish - alijahon.uz
-        
+
     </title>
 
 
@@ -153,31 +154,41 @@
                     <ul class="navbar-nav flex-column mb-3" id="navbarVerticalNav">
                         <li class="nav-item">
                             <ul class="nav collapse show" id="dashboard">
+
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="/" aria-expanded="false">
+                                    {#                                    <a class="nav-link active" href="/" aria-expanded="false">#}
+                                    <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/"
+                                       aria-expanded="false">
                                         <div class="d-flex align-items-center"><span
                                                 class="nav-link-text ps-1">Bosh sahifa</span>
                                         </div>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active"  aria-expanded="false">
+
+
+                                    {#                                    <a class="nav-link active" href="{% url 'product-list' %}" aria-expanded="false">#}
+                                    <a class="nav-link {% if request.path|current_path:'product/list/' %}active{% endif %}"
+                                       href="{% url 'product-list' %}" aria-expanded="false">
                                         <div class="d-flex align-items-center"><span
-                                                class="nav-link-text ps-1">
-                                              <a href="{% url 'mahsulotlar' %}">Mahsulotlar</a>
-                                        </span>
+                                                class="nav-link-text ps-1">Mahsulotlar</span>
                                         </div>
                                     </a>
                                 </li>
+
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="/profile/ordered-products" aria-expanded="false">
+                                    {#                                    <a class="nav-link active" href="{% url 'buyurtmalar' %}" aria-expanded="false">#}
+                                    <a class="nav-link {% if request.path|current_path:'buyurtmalar/' %}active{% endif %}"
+                                       href="{% url 'buyurtmalar' %}" aria-expanded="false">
                                         <div class="d-flex align-items-center"><span
                                                 class="nav-link-text ps-1">Buyurtmalar</span>
                                         </div>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="/profile/liked-products" aria-expanded="false">
+                                    {#                                    <a class="nav-link active" href="{% url 'wishlist' %}" aria-expanded="false">#}
+                                    <a class="nav-link {% if request.path|current_path:'wishlist/' %}active{% endif %}"
+                                       href="{% url 'wishlist' %}" aria-expanded="false">
                                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Yoqtirgan mahsulotlarim</span>
                                         </div>
                                     </a>
@@ -189,49 +200,58 @@
                             <ul class="nav collapse show" id="dashboard">
                                 {% if request.user.is_authenticated %}
                                     <li class="nav-item">
-                                        <a class="nav-link active" href="{% url 'market' %}" aria-expanded="false">
+                                        <a class="nav-link {% if request.path|current_path:'market/' %}active{% endif %}"
+                                           href="{% url 'market' %}" aria-expanded="false">
                                             <div class="d-flex align-items-center"><span
                                                     class="nav-link-text ps-1">Market</span>
                                             </div>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link active" href="/admin_page/urls" aria-expanded="false">
+                                        <a class="nav-link {% if request.path|current_path:'stream/' %}active{% endif %}"
+                                           href="{% url 'stream-list' %}" aria-expanded="false">
                                             <div class="d-flex align-items-center"><span
                                                     class="nav-link-text ps-1">Oqim</span>
                                             </div>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link active" href="/admin_page/stats" aria-expanded="false">
+                                        {#                                        <a class="nav-link active" href="{% url 'stats' %}" aria-expanded="false">#}
+                                        <a class="nav-link {% if request.path|current_path:'stats/' %}active{% endif %}"
+                                           href="{% url 'stats' %}" aria-expanded="false">
                                             <div class="d-flex align-items-center"><span
                                                     class="nav-link-text ps-1">Statistika</span>
                                             </div>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link active" href="/admin_page/requests" aria-expanded="false">
+                                        {#                                        <a class="nav-link active" href="{% url 'request' %}" aria-expanded="false">#}
+                                        <a class="nav-link {% if request.path|current_path:'requests/' %}active{% endif %}"
+                                           href="{% url 'request' %}" aria-expanded="false">
                                             <div class="d-flex align-items-center"><span
                                                     class="nav-link-text ps-1">So'rovlar</span>
                                             </div>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link active" href="/admin_page/competition" aria-expanded="false">
+                                        <a class="nav-link {% if request.path|current_path:'competition/' %}active{% endif %}"
+                                           href="{% url 'competition' %}" aria-expanded="false">
                                             <div class="d-flex align-items-center"><span
                                                     class="nav-link-text ps-1">Konkurs</span>
                                             </div>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link active" href="/admin_page/withdraw" aria-expanded="false">
+                                        <a class="nav-link {% if request.path|current_path:'payments/' %}active{% endif %}"
+                                           href="{% url 'payment' %}" aria-expanded="false">
                                             <div class="d-flex align-items-center"><span
                                                     class="nav-link-text ps-1">To'lov</span>
                                             </div>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link active" href="/admin_page/diagrams" aria-expanded="false">
+                                        <a class="nav-link {% if request.path|current_path:'diagrams/' %}active{% endif %}"
+                                           href="{% url 'diagrams' %}" aria-expanded="false">
                                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Diagrammalar</span>
                                             </div>
                                         </a>
@@ -316,14 +336,14 @@
                         <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="navbarDropdownUser">
                             {% if request.user.is_authenticated %}
                                 <div class="bg-white dark__bg-1000 rounded-2 py-2">
-                                    <a class="dropdown-item fw-bold text-warning" href="#!"><span
-                                            class="fas fa-crown me-1"></span><span>Go Pro</span></a>
 
-                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#!">Set status</a>
                                     <a class="dropdown-item" href="{% url 'profile' %}">Profile &amp;
                                         account</a>
-                                    <a class="dropdown-item" href="#!">Feedback</a>
+                                    <a class="dropdown-item fw-bold text-warning" href="{% url 'admin_page' %}">
+                                        <span class="fas fa-crown me-1"></span>
+                                        <span>Adminlar uchun</span>
+                                    </a>
 
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="../../../pages/user/settings.html">Settings</a>
@@ -334,10 +354,10 @@
                                 </div>
                             {% else %}
                                 <div class="bg-white dark__bg-1000 rounded-2 py-2">
-                                    <a class="dropdown-item" href="{% url 'login' %}">Profile</a>
+                                    <a class="dropdown-item" href="{% url 'login' %}">Akkountga kirish</a>
 
 
-                                    <a class="dropdown-item" href="{% url 'login' %}">Ro'yhatdan o'tish</a>
+                                    <a class="dropdown-item" href="{% url 'register' %}">Ro'yhatdan o'tish</a>
 
                                 </div>
 
@@ -363,14 +383,8 @@
 
 
 
-            <footer class="footer">
-                <div class="row g-0 justify-content-between fs--1 mt-2 mb-4">
-                    <div class="col-12 col-sm-auto text-center">
-                        <!-- <p class="mb-0 text-600"><a href="https://sayt.uz"style="color: #d9a491; font-size: 15px;">Разработка сайтов Sayt.uz</a>  <span class="d-none d-sm-inline-block">| </span> 2022 &copy; </p> -->
-                    </div>
-
-                </div>
-            </footer>
+        
+        
 
 
         </div>
@@ -410,7 +424,7 @@
         console.log(availableTags);
     });
 </script>
-
+{% include 'apps/include_base/scripts.html' %}
 
 </body>
 

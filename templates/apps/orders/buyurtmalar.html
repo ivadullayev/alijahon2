@@ -1,0 +1,83 @@
+{% extends 'apps/include_base/base.html' %}
+{% load static %}
+{% block body %}
+    <!DOCTYPE html>
+
+
+    <div class="card mb-3">
+        <div class="card-body">
+            <div class="container" style="padding-top: 10px;">
+                <div class="content_cart">
+
+                    <div class="content_single-product-nouser">
+                        <div class="row">
+                            {% if message %}
+                                <div class="col-12">
+                                    <p class="text-danger">{{ message }}</p>
+                                </div>
+                            {% elif orders %}
+                                {% for order in orders %}
+                                    <div class="col-md-4 p-5">
+                                        <h3>Mahsulot: {{ order.product.name }}</h3>
+                                        <small>Mahsulot narxi: {{ order.product.price }}</small>
+                                        <p>Soni: {{ order.quantity }}</p>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="row g-0 justify-content-between fs--1 mt-2 mb-4">
+            <div class="col-12 col-sm-auto text-center">
+                <!-- <p class="mb-0 text-600"><a href="https://sayt.uz"style="color: #d9a491; font-size: 15px;">Разработка сайтов Sayt.uz</a>  <span class="d-none d-sm-inline-block">| </span> 2022 &copy; </p> -->
+            </div>
+
+        </div>
+    </footer>
+
+
+    </div>
+    </div>
+    </main>
+    <!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+
+
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    <!-- <script src="/static/app/themes/stock/assets/js/bundle.js"></script>
+    <script src="/static/app/vendors/swiper/swiper-bundle.min.js"></script> -->
+    <script src="/static/app/vendors/popper/popper.min.js"></script>
+    <script src="/static/app/vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="/static/app/vendors/anchorjs/anchor.min.js"></script>
+    <script src="/static/app/vendors/is/is.min.js"></script>
+    <script src="/static/app/vendors/echarts/echarts.min.js"></script>
+    <script src="/static/app/vendors/fontawesome/all.min.js"></script>
+    <script src="/static/app/vendors/lodash/lodash.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <script src="/static/app/vendors/list.js/list.min.js"></script>
+    <script src="/static/app/assets/js/theme.js"></script>
+    <script src="https://kit.fontawesome.com/1257678c77.js" crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+            var availableTags = [];
+            $("#search-input").autocomplete({
+                source: availableTags
+            });
+            console.log(availableTags);
+        });
+    </script>
+
+    </body>
+
+    </html>
+{% endblock %}

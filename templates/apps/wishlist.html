@@ -1,0 +1,40 @@
+{% extends 'apps/include_base/base.html' %}
+{% block body %}
+
+    <div class="container" id="wishlist">
+        <div class="row">
+            {% for wishlist in wishlists %}
+                <div class="mb-4 col-md-6 col-lg-4">
+                    <div class="card h-100 d-flex flex-column justify-content-between pb-3">
+                        <div class="overflow-hidden">
+                            <div class="position-relative rounded-top overflow-hidden">
+                                <a class="d-block" href="{% url 'product_detail' wishlist.product.slug %}">
+                                    <img class="img-fluid rounded-top" src="{{ wishlist.product.image.url }}" alt="">
+                                </a>
+                            </div>
+                            <div class="p-3">
+                                <h5 class="fs-0">
+                                    <a class="text-dark"
+                                       href="{% url 'product_detail' wishlist.product.slug %}">{{ wishlist.product.name }}</a>
+                                </h5>
+                                <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
+                                    {{ wishlist.product.price }}</h5>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-between-center px-3">
+                            <div>
+                                <a class="btn btn-sm btn-falcon-default mt-2" style="width: 200px;"
+                                   href="{% url 'product_detail' wishlist.product.slug %}"
+                                   data-bs-toggle="tooltip" data-bs-placement="top"
+                                   title="" data-bs-original-title="Add to Cart" aria-label="Add to Cart">
+                                    Buyurtma qilish
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

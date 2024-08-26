@@ -3,17 +3,21 @@
 
 {% block body %}
     <div class="card">
-        
-{#      {% if messages %}#}
-{#        {% for message in messages %}#}
-{#            <div class="alert">#}
-{#                {{ message }}#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#    {% endif %}#}
+    
+    
+    
+          {% if messages %}
+        {% for message in messages %}
+            {{ message.level }}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    
     
         <form method="post">
-            
+
             {% csrf_token %}
             <div class="card-body p-4">
                 <div class="row flex-between-center">
@@ -32,15 +36,22 @@
                         <label class="form-label" for="split-login-email">
                             Telefon nomer</label>
                     </div>
-                    <input type="text" name="phone_number" id="phone-mask" class="form-control"
-                    placeholder="telefon raqamingizni kiriting">
+                    <input type="text" name="phone_number" id="phone-mask" class="form-control">
                 </div>
+
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between">
+                        <label class="form-label" for="split-login-email">
+                            Email</label>
+                    </div>
+                    <input type="email" name="email" id="split-login-email" class="form-control">
+                </div>
+
                 <div class="mb-3">
                     <div class="d-flex justify-content-between">
                         <label class="form-label" for="split-login-password">Parol</label>
                     </div>
-                    <input class="form-control" name="password" id="split-login-password" type="password"
-                    placeholder="parolingizni kiriting">
+                    <input class="form-control" name="password" id="split-login-password" type="password">
                 </div>
 
                 <div class="mb-3">
@@ -48,11 +59,6 @@
                         Kirish
                     </button>
                 </div>
-
-                <a href="{% url 'register' %}" class="btn btn-primary d-block w-100 mt-3">
-                    Ro'yxatdan o'tish
-                </a>
-
 
             </div>
         </form>
@@ -68,7 +74,7 @@
 
     <script src="https://unpkg.com/imask"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>   
+    <script src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
 
     <script>
         $('#phone-mask').inputmask({

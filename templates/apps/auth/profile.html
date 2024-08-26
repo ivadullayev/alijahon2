@@ -6,26 +6,27 @@
         <div class="row g-0 text-center fs--1">
             <div class="col-12 col-md-12">
                 <div class="bg-white dark__bg-1100 p-3 h-100"><img
-                        class="img-thumbnail img-fluid rounded-circle mb-3 shadow-sm" src="{% static "apps/themes/nouser.jpeg" %}" alt=""
+                        class="img-thumbnail img-fluid rounded-circle mb-3 shadow-sm"
+                        src="{% static "apps/themes/nouser.jpeg" %}" alt=""
                         width="100">
-                    
-                    {% for user in users  %}
-                    	<h6 class="mb-1">
-                        {{ user.phone_number }}
-                    </h6>
+
+                    {% for user in users %}
+                        <h6 class="mb-1">
+                            {{ user.phone_number }}
+                        </h6>
                     {% endfor %}
-                    
-                    
+
+
                     <p class="fs--2 mb-1"><a class="btn btn-link text-700" href="{% url 'settings' %}">Sozlamalarga
                         o'tish</a></p>
 
-                </div>  
+                </div>
             </div>
         </div>
         <div class="card-body fs--1 p-0">
 
             <a class="border-bottom-0 notification rounded-0 border-x-0 border border-300"
-               href="/profile/liked-products">
+               href="{% url 'wishlist' %}">
                 <div class="notification-avatar">
                     <div class="avatar avatar-xl me-3">
                         <div class="avatar-emoji rounded-circle "><span role="img" aria-label="Emoji">📌</span></div>
@@ -37,7 +38,7 @@
             </a>
 
             <a class="border-bottom-0 notification rounded-0 border-x-0 border border-300"
-               href="/profile/ordered-products">
+               href="{% url 'buyurtmalar' %}">
                 <div class="notification-avatar">
                     <div class="avatar avatar-xl me-3">
                         <div class="avatar-emoji rounded-circle "><span role="img" aria-label="Emoji">🏷️</span></div>
@@ -48,7 +49,8 @@
                 </div>
             </a>
 
-            <a class="border-bottom-0 notification rounded-0 border-x-0 border border-300" href="#">
+            <a class="border-bottom-0 notification rounded-0 border-x-0 border border-300"
+               href="#">
                 <div class="notification-avatar">
                     <div class="avatar avatar-xl me-3">
                         <div class="avatar-emoji rounded-circle "><span role="img" aria-label="Emoji">💬</span></div>
